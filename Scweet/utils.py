@@ -145,7 +145,11 @@ def init_driver(headless=True, proxy=None, show_images=False, option=None, firef
         prefs = {"profile.managed_default_content_settings.images": 2}
         options.add_experimental_option("prefs", prefs)
     if option is not None:
-        options.add_argument(option)
+        if isinstance(option,str):
+            options.add_argument(option)
+        elif isinstance(option,list):
+            for item in option:
+                options.add_argument(item)
 
     if firefox:
         driver = webdriver.Firefox(options=options, executable_path=driver_path)

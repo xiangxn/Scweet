@@ -407,7 +407,8 @@ def get_users_follow(users, headless, env, follow=None, verbose=1, wait=2, limit
 
 def check_exists_by_link_text(text, driver):
     try:
-        driver.find_element_by_link_text(text)
+        # driver.find_element_by_link_text(text)
+        driver.find_element(by=By.LINK_TEXT, value=text)
     except NoSuchElementException:
         return False
     return True
